@@ -1,0 +1,8 @@
+#! /usr/bin/env python
+# encoding: utf-8
+
+def build(bld):
+    ## Works: ./waf clean build -j1
+    ## Doesn't work: ./waf clean build --targets=test2 -j1
+    bld.program(target='test2', source='main.c', includes='.')
+    bld(target='dummy.h', source='dummy.h.in', rule='sleep 1 && cp ${SRC} ${TGT}')
